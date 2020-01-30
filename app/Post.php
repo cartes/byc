@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -47,6 +48,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Commune|null $commune
  * @property-read \App\Region|null $region
  * @property-read \App\Seller $seller
+ * @property-read mixed $date
  */
 class Post extends Model
 {
@@ -78,4 +80,17 @@ class Post extends Model
     {
         return $this->belongsTo(Region::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function getDateAttribute()
+    {
+        $attr = Carbon::parse($this->attributes['created_at']);
+
+        return $attr->isToday() ? 'Hoy, ' . $attr->diffForHumans() : 'Otra';
+    }
+
 }

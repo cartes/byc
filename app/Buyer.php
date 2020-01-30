@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Buyer extends Model
 {
+    protected $fillable = ['user_id', 'title'];
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);

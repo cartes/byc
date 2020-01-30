@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * App\User
@@ -49,13 +51,30 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (User $user) {
+            if (! \App::runningInConsole()) {
+
+                $last_user = DB::table('users')
+                    ->orderBy('id', 'desc')
+                    ->select('id')->first();
+                $id = (int) $last_user->id + 1;
+
+                $user->slug = Str::slug($user->name . " " . $user->last_name . " " . $id,"-");
+            }
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -75,6 +94,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function navigation() {
+        return auth()->check() ? auth()->user()->role->name : 'guest';
+    }
 
     public function role()
     {

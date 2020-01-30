@@ -90,7 +90,7 @@ class Post extends Model
     {
         $attr = Carbon::parse($this->attributes['created_at']);
 
-        return $attr->isToday() ? 'Hoy, ' . $attr->diffForHumans() : 'Otra';
+        return $attr->isToday() ? 'Hoy, ' . $attr->diffForHumans() : $attr->diffForHumans();
     }
 
 }

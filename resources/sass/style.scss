@@ -1,0 +1,46 @@
+// Colors
+a {
+  transition: 300ms;
+  text-decoration: none !important;
+}
+$crimsom: #aa3125;
+.navbar-byc {
+  background: {
+    color: $crimsom;
+  }
+
+  .navbar-brand {
+    color: $white;
+    transition: 300ms;
+    &:hover {
+      color: lighten($crimsom, 40%);
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+      transition: 300ms;
+      &:hover {
+        color: lighten($crimsom, 40%);
+      }
+    }
+  }
+
+  .navbar-nav {
+    a, a.nav-link {
+      color: $white;
+      &:hover {
+        color: lighten($crimsom, 40%);
+      }
+    }
+  }
+
+  .dropdown-menu {
+    a {
+      color:  lighten($crimsom, 20%);
+      &:hover {
+        color: $crimsom;
+      }
+    }
+  }
+}

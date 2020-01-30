@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         factory(\App\User::class, 1)->create([
             'name' => 'Cristian',
             'last_name' => 'Cartes',
+            'slug' => 'cristian-cartes',
             'email' => 'cristiancartesa@gmail.com',
             'password' => bcrypt('12345'),
             'role_id' => \App\Role::ADMIN
@@ -50,5 +51,7 @@ class DatabaseSeeder extends Seeder
         );
 
         factory(\App\Category::class, 5)->create();
+
+        factory(\App\Post::class, 150)->create();
     }
 }

@@ -21,8 +21,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Seller whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Seller whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @property-read int|null $posts_count
+ * @property-read \App\User $user
  */
 class Seller extends Model
 {
-    //
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->select('id', 'role_id', 'name', 'last_name', 'email');
+    }
 }

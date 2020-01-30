@@ -21,10 +21,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Role whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read int|null $users_count
  */
 class Role extends Model
 {
     const ADMIN = 1;
     const PERSON = 2;
     const BUSINESS = 3;
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

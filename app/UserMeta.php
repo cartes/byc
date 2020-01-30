@@ -35,8 +35,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserMeta whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserMeta whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\User $user
  */
 class UserMeta extends Model
 {
-    //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

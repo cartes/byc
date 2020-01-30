@@ -21,8 +21,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Commune whereRegionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Commune whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $post
+ * @property-read int|null $post_count
  */
 class Commune extends Model
 {
-    //
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

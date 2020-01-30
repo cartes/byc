@@ -21,8 +21,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Region whereOrdinal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Region whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $post
+ * @property-read int|null $post_count
  */
 class Region extends Model
 {
-    //
+    public function post() {
+        return $this->hasMany(Post::class);
+    }
 }

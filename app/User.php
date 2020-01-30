@@ -39,6 +39,11 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Buyer $buyer
+ * @property-read \App\UserMeta $meta
+ * @property-read \App\Role $role
+ * @property-read \App\Seller $seller
+ * @property-read \App\UserSocialAccount $socialAccount
  */
 class User extends Authenticatable
 {
@@ -70,4 +75,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function buyer()
+    {
+        return $this->hasOne(Buyer::class);
+    }
+
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
+    }
+
+    public function socialAccount()
+    {
+        return $this->hasOne(UserSocialAccount::class);
+    }
+
+    public function meta()
+    {
+        return $this->hasOne(UserMeta::class);
+    }
 }

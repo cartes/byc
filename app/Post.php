@@ -41,10 +41,41 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Buyer[] $buyers
+ * @property-read int|null $buyers_count
+ * @property-read \App\Category $category
+ * @property-read \App\Commune|null $commune
+ * @property-read \App\Region|null $region
+ * @property-read \App\Seller $seller
  */
 class Post extends Model
 {
     const PUBLISHED = 1;
     const PENDING = 2;
     const EXPIRED = 3;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class)->select('id', 'name');
+    }
+
+    public function buyers()
+    {
+        return $this->belongsToMany(Buyer::class);
+    }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
+
+    public function commune()
+    {
+        return $this->belongsTo(Commune::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 }

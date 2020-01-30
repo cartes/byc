@@ -11,7 +11,7 @@ use Faker\Generator as Faker;
 $factory->define(Post::class, function (Faker $faker) {
     $name = $faker->sentence;
     $status = $faker->randomElement([Post::PUBLISHED, Post::PENDING, Post::EXPIRED]);
-    $region = \App\Region::all()->random()->id;
+    $commune = \App\Comune::all()->random();
     return [
         'seller_id' => Seller::all()->random()->id,
         'category_id' => Category::all()->random()->id,
@@ -21,7 +21,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'status' => $status,
         'previous_published' => $status !== Post::PUBLISHED ? false : true,
         'price' => $faker->numberBetween(100000, 750000),
-        'region_id' => $region,
-        'commune_id' => \App\Commune::all()->whereRegionId($region)->random()->id
+        'region_id' => $commune->region_id,
+        'commune_id' => $commune->id
     ];
 });

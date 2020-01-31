@@ -16,6 +16,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::prefix('post')->group(function() {
+Route::prefix('category')->group(function () {
+    Route::group(['middleware' => [sprintf('role:%s', \App\Role::ADMIN)]], function () {
+        Route::get('/list', 'CategoryController@show')->name("category.show");
+        Route::post('/store', 'CategoryController@store')->name("category.store");
+        Route::delete('/destroy', 'CategoryController@destroy')->name("category.destroy");
+    });
+});
+
+Route::prefix('post')->group(function () {
     Route::get('{cat}/{slug}', 'PostController@show')->name("post.show");
 });

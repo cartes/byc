@@ -34,6 +34,18 @@ class DatabaseSeeder extends Seeder
             factory(\App\UserMeta::class, 1)->create(['user_id' => $user->id]);
         });
 
+        factory(\App\User::class, 1)->create([
+            'name' => 'Gabriela Paz',
+            'last_name' => 'García',
+            'slug' => 'gabriela-paz-garcia',
+            'email' => 'gabyulita@gmail.com',
+            'password' => bcrypt('123456'),
+            'role_id' => \App\Role::PERSON
+        ])->each(function (\App\User $user) {
+            factory(\App\Buyer::class, 1)->create(['user_id' => $user->id]);
+            factory(\App\UserMeta::class, 1)->create(['user_id' => $user->id]);
+        });
+
         factory(\App\User::class, 50)->create()->each(
             function (\App\User $user) {
                 factory(\App\Buyer::class, 1)->create(['user_id' => $user->id]);
@@ -52,6 +64,6 @@ class DatabaseSeeder extends Seeder
 
         factory(\App\Category::class, 5)->create();
 
-        factory(\App\Post::class, 150)->create();
+        factory(\App\Post::class, 10000)->create();
     }
 }

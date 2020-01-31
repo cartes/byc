@@ -1,5 +1,11 @@
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        {{ __('Publicar Aviso') }}
+    </a>
+</li>
+
 <li class="nav-item dropdown">
-    <a id="navbarDropDown" class="dropdown-toggle" href="#" role="button"
+    <a id="navbarDropDown" class="dropdown-toggle nav-link" href="#" role="button"
        data-toggle="dropdown"
        aria-haspopup="true" aria-expanded="false">
         {{ Auth::user()->name }}

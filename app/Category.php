@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+
 
 /**
  * App\Category
@@ -25,11 +28,48 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
  * @property-read int|null $posts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\SubCategory[] $subCategories
+ * @property-read int|null $sub_categories_count
  */
 class Category extends Model
 {
+    use Notifiable;
+    
+    protected $fillable = ['name', 'slug', 'description', 'parent_id'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (Category $cat){
+            if ( ! \App::runningInConsole() ) {
+                $cat->slug = Str::slug($cat->name);
+            }
+        });
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function subCategories()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function childrenRecursive()
+    {
+        return $this->children()->with('childrenRecursive');
     }
 }

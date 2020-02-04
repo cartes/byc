@@ -19,7 +19,8 @@ class PostController extends Controller
     {
         $region = Region::all();
         $commune = Commune::all();
-        return view("posts.create", compact('region', 'commune'));
+        $categories = Category::orderby('name')->get();
+        return view("posts.create", compact('region', 'commune', 'categories'));
     }
 
     public function store(Request $request)
@@ -34,12 +35,9 @@ class PostController extends Controller
         $communes = Commune::where('region_id', $request->get('id'))->get();
 
         $output = [];
-
-
         foreach ($communes as $comune) {
             $output[$comune->id] = $comune->name;
         }
-
         return $output;
     }
 

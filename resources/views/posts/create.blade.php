@@ -22,6 +22,17 @@
                         <form method="post">
                             <div class="row form-group">
                                 <div class="col-12">
+                                    <label>Categoría</label>
+                                    <select class="form-control" name="category_id">
+                                        <option>{{ __('Seleccione una categoría') }}</option>
+                                        @foreach($categories as $cat)
+                                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-12">
                                     <label>Título</label>
                                     <input type="text" class="form-control" name="name" value=""/>
                                 </div>

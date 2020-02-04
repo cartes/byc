@@ -9,7 +9,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{ route('user.show') }}" class="nav-link">
         {{ __('Administrar Usuarios') }}
     </a>
 </li>

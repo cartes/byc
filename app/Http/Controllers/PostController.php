@@ -29,4 +29,18 @@ class PostController extends Controller
         return back()->with('message', ['success', __('Aviso publicado con éxito')]);
     }
 
+    public function communes(Request $request)
+    {
+        $communes = Commune::where('region_id', $request->get('id'))->get();
+
+        $output = [];
+
+
+        foreach ($communes as $comune) {
+            $output[$comune->id] = $comune->name;
+        }
+
+        return $output;
+    }
+
 }

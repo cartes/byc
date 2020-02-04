@@ -25,4 +25,19 @@ class UserController extends Controller
         $communes = Commune::all();
         return view('users.detail', compact( 'user', 'meta', 'communes', 'region'));
     }
+
+    public function communes(Request $request)
+    {
+        $communes = Commune::where('region_id', $request->get('id'))->get();
+
+        $output = [];
+
+
+        foreach ($communes as $comune) {
+            $output[$comune->id] = $comune->name;
+        }
+
+        return $output;
+    }
+
 }

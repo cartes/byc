@@ -46,6 +46,8 @@ use Illuminate\Support\Str;
  * @property-read \App\Role $role
  * @property-read \App\Seller $seller
  * @property-read \App\UserSocialAccount $socialAccount
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @property-read int|null $posts_count
  */
 class User extends Authenticatable
 {

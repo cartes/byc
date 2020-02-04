@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Commune;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -46,5 +47,4 @@ class CategoryController extends Controller
 
         return redirect(route("category.show"))->with('message', ['success', 'La categoría ha sido actualizada con existo']);
     }
-
 }

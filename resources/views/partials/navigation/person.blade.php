@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{ route("post.create") }}" class="nav-link">
         {{ __('Publicar Aviso') }}
     </a>
 </li>

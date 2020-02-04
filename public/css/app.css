@@ -11356,3 +11356,52 @@ a.text-dark:focus {
   }
 }
 
+a {
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  text-decoration: none !important;
+}
+
+.navbar-byc {
+  background-color: #aa3125;
+}
+
+.navbar-byc .navbar-brand {
+  color: #fff;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+.navbar-byc .navbar-brand:hover {
+  color: #edb3ae;
+}
+
+.navbar-byc .navbar-brand a {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+.navbar-byc .navbar-brand a:hover {
+  color: #edb3ae;
+}
+
+.navbar-byc .navbar-nav a,
+.navbar-byc .navbar-nav a.nav-link {
+  color: #fff;
+}
+
+.navbar-byc .navbar-nav a:hover,
+.navbar-byc .navbar-nav a.nav-link:hover {
+  color: #edb3ae;
+}
+
+.navbar-byc .dropdown-menu a {
+  color: #db665a;
+}
+
+.navbar-byc .dropdown-menu a:hover {
+  color: #aa3125;
+}
+

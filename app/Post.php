@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Post
@@ -52,6 +53,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+    use SoftDeletes;
+
     const PUBLISHED = 1;
     const PENDING = 2;
     const EXPIRED = 3;
@@ -81,9 +84,9 @@ class Post extends Model
         return $this->belongsTo(Region::class);
     }
 
-    public function getRouteKeyName()
+    public function user()
     {
-        return 'slug';
+        return $this->belongsTo(User::class);
     }
 
     public function getDateAttribute()

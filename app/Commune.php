@@ -30,4 +30,9 @@ class Commune extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function meta()
+    {
+        return $this->hasMany(UserMeta::class);
+    }
 }

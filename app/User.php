@@ -56,14 +56,14 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function (User $user) {
-            if (! \App::runningInConsole()) {
+            if (!\App::runningInConsole()) {
 
                 $last_user = DB::table('users')
                     ->orderBy('id', 'desc')
                     ->select('id')->first();
-                $id = (int) $last_user->id + 1;
+                $id = (int)$last_user->id + 1;
 
-                $user->slug = Str::slug($user->name . " " . $user->last_name . " " . $id,"-");
+                $user->slug = Str::slug($user->name . " " . $user->last_name . " " . $id, "-");
             }
         });
     }
@@ -95,7 +95,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function navigation() {
+    public static function navigation()
+    {
         return auth()->check() ? auth()->user()->role->name : 'guest';
     }
 
@@ -122,5 +123,15 @@ class User extends Authenticatable
     public function meta()
     {
         return $this->hasOne(UserMeta::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

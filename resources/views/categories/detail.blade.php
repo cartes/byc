@@ -13,6 +13,5 @@
         @endif
     </div>
 
-    @include('partials.category.list')
-
+    @include('partials.category.detail')
 @endsection

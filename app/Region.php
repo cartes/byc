@@ -26,7 +26,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Region extends Model
 {
-    public function post() {
+    public function post()
+    {
         return $this->hasMany(Post::class);
     }
+
+    public function meta()
+    {
+        return $this->hasMany(UserMeta::class);
+    }
+
+
 }

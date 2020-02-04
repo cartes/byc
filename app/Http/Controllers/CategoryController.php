@@ -33,4 +33,18 @@ class CategoryController extends Controller
 
         return back()->with('message', ['success', __('Las categorías fueron eliminadas')]);
     }
+
+    public function edit(Category $slug)
+    {
+        $cat = $slug;
+        return view("categories.detail", compact('cat'));
+    }
+
+    public function update(Request $request, Category $cat)
+    {
+        $cat->fill($request->input())->save();
+
+        return redirect(route("category.show"))->with('message', ['success', 'La categoría ha sido actualizada con existo']);
+    }
+
 }

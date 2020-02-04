@@ -72,4 +72,9 @@ class Category extends Model
     {
         return $this->children()->with('childrenRecursive');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

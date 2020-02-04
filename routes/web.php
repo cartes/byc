@@ -21,6 +21,15 @@ Route::prefix('category')->group(function () {
         Route::get('/list', 'CategoryController@show')->name("category.show");
         Route::post('/store', 'CategoryController@store')->name("category.store");
         Route::delete('/destroy', 'CategoryController@destroy')->name("category.destroy");
+        Route::get("/{slug}/edit", "CategoryController@edit")->name("category.edit");
+        Route::put("/{cat}/update", "CategoryController@update")->name("category.update");
+    });
+});
+
+Route::prefix('user')->group(function () {
+    Route::group(['middleware' => [sprintf('role:%s', \App\Role::ADMIN)]], function() {
+        Route::get('/list', 'UserController@show')->name('user.show');
+        Route::get('/{user}/edit', "UserController@edit")->name('user.edit');
     });
 });
 

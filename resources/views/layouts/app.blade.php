@@ -18,14 +18,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @stack("scripts")
+
+    @stack("styles")
 </head>
 <body>
-    @include('partials.navigation')
-    <div id="app">
+@include('partials.navigation')
+<div id="app">
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <main class="py-4">
+        @yield('content')
+    </main>
+</div>
+@stack("footer")
 </body>
 </html>

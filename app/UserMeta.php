@@ -43,4 +43,15 @@ class UserMeta extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function commune()
+    {
+        return $this->belongsTo(Commune::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
 }

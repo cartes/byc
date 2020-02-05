@@ -50,6 +50,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Region|null $region
  * @property-read \App\Seller $seller
  * @property-read mixed $date
+ * @property-read \App\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Post onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
  */
 class Post extends Model
 {

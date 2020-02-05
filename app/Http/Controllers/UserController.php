@@ -25,4 +25,6 @@ class UserController extends Controller
         $communes = Commune::all();
         return view('users.detail', compact( 'user', 'meta', 'communes', 'region'));
     }
+
+
 }

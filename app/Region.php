@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $post
  * @property-read int|null $post_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\UserMeta[] $meta
+ * @property-read int|null $meta_count
  */
 class Region extends Model
 {

@@ -36,6 +36,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserMeta whereUserId($value)
  * @mixin \Eloquent
  * @property-read \App\User $user
+ * @property-read \App\Commune|null $commune
+ * @property-read \App\Region|null $region
  */
 class UserMeta extends Model
 {

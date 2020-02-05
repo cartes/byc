@@ -35,4 +35,6 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('post')->group(function () {
     Route::get('{cat}/{slug}', 'PostController@show')->name("post.show");
+    Route::get('/create', "PostController@create")->name("post.create");
+    Route::post('/communes', "PostController@communes")->name("loadCommunes");
 });

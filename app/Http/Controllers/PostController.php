@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Commune;
+use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Region;
 use Illuminate\Http\Request;
@@ -23,8 +24,10 @@ class PostController extends Controller
         return view("posts.create", compact('region', 'commune', 'categories'));
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
+        dd($request);
+
         Post::create($request->input());
 
         return back()->with('message', ['success', __('Aviso publicado con éxito')]);

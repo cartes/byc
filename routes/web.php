@@ -27,7 +27,7 @@ Route::prefix('category')->group(function () {
 });
 
 Route::prefix('user')->group(function () {
-    Route::group(['middleware' => [sprintf('role:%s', \App\Role::ADMIN)]], function() {
+    Route::group(['middleware' => [sprintf('role:%s', \App\Role::ADMIN)]], function () {
         Route::get('/list', 'UserController@show')->name('user.show');
         Route::get('/{user}/edit', "UserController@edit")->name('user.edit');
     });
@@ -36,5 +36,6 @@ Route::prefix('user')->group(function () {
 Route::prefix('post')->group(function () {
     Route::get('{cat}/{slug}', 'PostController@show')->name("post.show");
     Route::get('/create', "PostController@create")->name("post.create");
+    Route::post("/store", "PostController@store")->name("post.store");
     Route::post('/communes', "PostController@communes")->name("loadCommunes");
 });

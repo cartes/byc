@@ -19,7 +19,11 @@
                 <h3>{{ __("Crear Aviso") }}</h3>
                 <div class="card">
                     <div class="card-body">
-                        <form method="post">
+                        <form id="postForm"
+                              method="post"
+                              action="{{ route("post.store") }}"
+                              enctype="multipart/form-data">
+                            @csrf
                             <div class="row form-group">
                                 <div class="col-12">
                                     <label>Categoría</label>
@@ -62,6 +66,17 @@
 
                                 </div>
                             </div>
+                            <div class="row form-group">
+                                <div class="col-6">
+                                    <label>Suba Imagenes</label>
+                                    <input class="form-control{{ $errors->has("file.*") || $errors->has("file") ? " is-invalid" : "" }}"
+                                           type="file" name="file[]" multiple/>
+                                    @if( $errors->has("file.*") || $errors->has("file") )
+                                        <span class="invalid-feedback">{{ $errors->first("file.*") ? $errors->first("file.*") : $errors->first("file") }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{ __("Publique su aviso") }}</button>
                         </form>
                     </div>
                 </div>
@@ -86,9 +101,8 @@
                     },
                     dataType: 'json',
                     success: function (response) {
-                        console.log(response);
-                        $.each(response, function(k, v){
-                            $('#communeSelect').append($('<option>', {value:k, text:v}));
+                        $.each(response, function (k, v) {
+                            $('#communeSelect').append($('<option>', {value: k, text: v}));
                         })
                     },
                     error: function (error) {
@@ -98,4 +112,6 @@
             })
         })
     </script>
+
+
 @endpush

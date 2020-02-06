@@ -95,6 +95,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(Images::class);
+    }
+
     public function getDateAttribute()
     {
         $attr = Carbon::parse($this->attributes['created_at']);

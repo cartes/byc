@@ -25,20 +25,26 @@
                               enctype="multipart/form-data">
                             @csrf
                             <div class="row form-group">
-                                <div class="col-12">
+                                <div class="col-5">
                                     <label>Categoría</label>
-                                    <select class="form-control" name="category_id">
-                                        <option>{{ __('Seleccione una categoría') }}</option>
+                                    <select class="form-control{{ $errors->has('category_id') ? " is-invalid" : "" }}" name="category_id">
+                                        <option value="">{{ __('Seleccione una categoría') }}</option>
                                         @foreach($categories as $cat)
                                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
+                                    @if( $errors->has('category_id') )
+                                        <span class="invalid-feedback">{{ $errors->first("category_id") }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-12">
                                     <label>Título</label>
-                                    <input type="text" class="form-control" name="name" value=""/>
+                                    <input type="text" class="form-control{{ $errors->has("name") ? " is-invalid" : "" }}" name="name" value=""/>
+                                    @if( $errors->has("name") )
+                                        <span class="invalid-feedback">{{ $errors->first("name") }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row form-group">

@@ -27,6 +27,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Seller extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'title'
+    ];
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -34,6 +39,17 @@ class Seller extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class)->select('id', 'role_id', 'name', 'last_name', 'email');
+        return $this->belongsTo(User::class)->select('id', 'role_id', 'name', 'last_name', 'email', 'phone', 'created_at');
+    }
+
+    public function meta()
+    {
+        return $this->hasOne(UserMeta::class, 'user_id', 'user_id');
+    }
+
+    public function getPostsCountAttribute() {
+        $count = Seller::whereUserId($this->attributes['user_id'])->count();
+
+        return $count;
     }
 }

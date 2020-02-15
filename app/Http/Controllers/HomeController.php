@@ -16,6 +16,7 @@ class HomeController extends Controller
     {
         $posts = Post::with('category', 'seller')
             ->where('status', Post::PUBLISHED)
+            ->with('images')
             ->latest()
             ->paginate(20);
         return view('home', compact('posts'));

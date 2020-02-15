@@ -20,10 +20,14 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $meta = UserMeta::whereUserId($user->id)->first();
+        $meta = UserMeta::where('user_id', '=', $user->id)->first();
         $region = Region::all();
         $communes = Commune::all();
-        return view('users.detail', compact( 'user', 'meta', 'communes', 'region'));
+        if (auth()->user()->id == $user->id) {
+            return view('users.detail', compact('user', 'meta', 'communes', 'region'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
     }
 
 

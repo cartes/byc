@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'phone' => ['required'],
         ]);
     }
 
@@ -68,11 +69,13 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+
         $user = User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone' => $request->phone,
         ]);
 
         return $this->registered($request, $user)

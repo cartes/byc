@@ -56,4 +56,8 @@ class UserMeta extends Model
         return $this->belongsTo(Region::class);
     }
 
+    public function seller() {
+        return $this->belongsTo( Seller::class);
+    }
+
 }

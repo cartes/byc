@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -76,7 +77,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'email', 'password',
+        'name', 'last_name', 'email', 'password', 'phone',
     ];
 
     /**
@@ -95,6 +96,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at'
     ];
 
     public static function navigation()
@@ -135,5 +141,13 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getDateInAttribute()
+    {
+        $date = Carbon::parse($this->attributes['created_at']);
+        $text = ucfirst($date->monthName) . " de " . $date->year;
+
+        return $text;
     }
 }

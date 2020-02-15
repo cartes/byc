@@ -65,6 +65,45 @@ class Post extends Model
     const PENDING = 2;
     const EXPIRED = 3;
 
+    protected $fillable = [
+        'seller_id',
+        'category_id',
+        'name',
+        'slug',
+        'description',
+        'status',
+        'previous_published',
+        'price',
+        'commune_id',
+        'region_id'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function (Post $post) {
+            if (! \App::runningInConsole()) {
+                if (request('file')) {
+                    foreach (request('file') as $file) {
+                        $path = $file->store('post');
+                        Image::create([
+                            "post_id" => $post->id,
+                            "path" => $path,
+                            "title" => $file->getClientOriginalName(),
+                            "mime_type" => $file->getClientMimeType()
+                        ]);
+                    }
+                }
+            }
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class)->select('id', 'name');
@@ -97,7 +136,7 @@ class Post extends Model
 
     public function images()
     {
-        return $this->hasMany(Images::class);
+        return $this->hasMany(Image::class)->select('id', 'title', 'path');
     }
 
     public function getDateAttribute()

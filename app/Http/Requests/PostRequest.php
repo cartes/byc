@@ -27,7 +27,6 @@ class PostRequest extends FormRequest
             "category_id" => "required",
             "name" => "required|min:3",
             "description" => "required",
-            "description" => "required",
             'file.*' => "mimes:jpeg,png,gif|max:5000",
             "file" => "max:3"
         ];

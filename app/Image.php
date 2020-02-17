@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    protected $table = 'images';
+
     protected $fillable = [
         'title',
         'post_id',
@@ -19,7 +21,7 @@ class Image extends Model
         return "/images/" . $this->path;
     }
 
-    public function posts() {
+    public function post() {
         return $this->belongsTo(Post::class);
     }
 }

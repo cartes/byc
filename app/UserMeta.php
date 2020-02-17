@@ -41,6 +41,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserMeta extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'rut',
+        'gender',
+        'address',
+        'commune_id',
+        'region_id',
+        'city',
+        'province',
+        'birthday'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -56,8 +68,9 @@ class UserMeta extends Model
         return $this->belongsTo(Region::class);
     }
 
-    public function seller() {
-        return $this->belongsTo( Seller::class);
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
 
 }

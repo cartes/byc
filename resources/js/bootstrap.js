@@ -7,8 +7,6 @@ window._ = require('lodash');
  */
 
 try {
-    require('fine-uploader');
-
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 

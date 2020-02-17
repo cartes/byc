@@ -83,7 +83,7 @@ class Post extends Model
         parent::boot();
 
         static::saved(function (Post $post) {
-            if (! \App::runningInConsole()) {
+            if (!\App::runningInConsole()) {
                 if (request('file')) {
                     foreach (request('file') as $file) {
                         $path = $file->store('post');
@@ -136,7 +136,12 @@ class Post extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class)->select('id', 'title', 'path');
+        return $this->hasMany(Image::class);
+    }
+
+    public function featured()
+    {
+        return $this->hasOne(Image::class);
     }
 
     public function getDateAttribute()

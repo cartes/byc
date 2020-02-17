@@ -20,7 +20,7 @@
                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -76,6 +76,21 @@
                                     <label for="password-confirm">{{ __('Confirm Password') }}</label>
                                     <input id="password-confirm" type="password" class="form-control"
                                            name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label>{{ __("Teléfono") }}</label>
+                                    <input class="form-control{{ $errors->has("phone") ? " is-invalid" : "" }}"
+                                           name="phone"
+                                           type="text"
+                                           required/>
+                                    @error("phone")
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

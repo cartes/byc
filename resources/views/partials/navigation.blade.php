@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-byc">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name') }}
+                <img src="{{ asset("/css/images/logo_bya.png") }}" alt="búscalo YA!" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarContent"
                     aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle Navigation">

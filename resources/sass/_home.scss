@@ -1,0 +1,17 @@
+.card {
+  .card-body {
+    .thumb {
+      position: relative;
+      overflow: hidden;
+      width: 150px;
+      height: 150px;
+      border: 1px solid $gray-300;
+
+      .thumb-item {
+        height: 150px;
+        width: auto;
+        position: relative;
+      }
+    }
+  }
+}

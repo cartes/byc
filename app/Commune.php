@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Commune extends Model
 {
-    public function post()
+    public function posts()
     {
         return $this->hasMany(Post::class);
     }
@@ -36,5 +36,10 @@ class Commune extends Model
     public function meta()
     {
         return $this->hasMany(UserMeta::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
     }
 }

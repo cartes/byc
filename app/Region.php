@@ -38,5 +38,9 @@ class Region extends Model
         return $this->hasMany(UserMeta::class);
     }
 
+    public function communes()
+    {
+        return $this->hasMany(Commune::class);
+    }
 
 }

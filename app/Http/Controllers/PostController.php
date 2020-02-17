@@ -32,7 +32,11 @@ class PostController extends Controller
         $region = Region::all();
         $commune = Commune::all();
         $categories = Category::orderby('name')->get();
-        $user = User::whereId(auth()->user()->id)->first();
+        if (auth()->user()) {
+            $user = User::whereId(auth()->user()->id)->first();
+        } else {
+            $user = [];
+        }
         return view("posts.create", compact('region', 'commune', 'categories', 'user'));
     }
 
@@ -57,7 +61,9 @@ class PostController extends Controller
 
     public function communes(Request $request)
     {
-        $communes = Commune::where('region_id', $request->get('id'))->get();
+        $communes = Commune::where('region_id', $request->get('id'))
+            ->orderBy('name')
+            ->get();
 
         $output = [];
         foreach ($communes as $comune) {

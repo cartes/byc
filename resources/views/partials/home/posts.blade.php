@@ -4,15 +4,29 @@
             <div class="card my-1">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-8">
-                            <small>{{ $post->date }}</small>
+                        <div class="col-meta col-md-3 border-right align-self-center">
+                            @foreach($post->images as $image)
+                                <div class="thumb">
+                                    <a href="{{ route("post.show", ["slug" => $post->slug]) }}">
+                                        <img src="{{ $image->path }}" class="thumb-item" alt="{{ $post->name }}">
+                                    </a>
+                                </div>
+                                @break
+                            @endforeach
+                        </div>
+                        <div class="col-md-9">
+                            <small>Publicado {{ $post->date }}</small>
                             <h5>
-                                <a href="{{ route("post.show", ['cat' => $post->category->name, 'slug' => $post->slug]) }}">{{ $post->name }}</a>
+                                <a href="{{ route("post.show", ['slug' => $post->slug]) }}">{{ $post->name }}</a>
                             </h5>
                             <p class="my-0"><strong>$ @convert( $post->price )</strong></p>
-                        </div>
-                        <div class="col-meta col-md-4 align-self-center">
-                            <div class="my-auto">
+                            <div class="row border-top mt-5">
+                                <div class="col-8">
+                                    <i class="fas fa-map-marker-alt"></i> {{ $post->commune->name ?? '' }}
+                                    @isset($post->region->name)
+                                        | Region {{ $post->region->name ?? '' }}
+                                    @endisset
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -29,7 +43,24 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h3>Widget</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Buscar</h5>
+                    </div>
+                </div>
+                <form class="search form" method="post" action="{{ route("home.search") }}">
+                    @csrf
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <input class="form-control" type="search" placeholder="Ingrese su busqueda" name="search"/>
+                        </div>
+                    </div>
+                    <div class="row form-group justify-content-center">
+                        <div class="col-11">
+                            <button type="submit" class="form-control btn btn-primary">Buscar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

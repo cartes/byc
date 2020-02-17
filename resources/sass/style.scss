@@ -2,6 +2,13 @@
 a {
   transition: 300ms;
   text-decoration: none !important;
+  color: $corpRed;
+  &:hover {
+    color: darken($corpRed, 15%);
+  }
+}
+.fas {
+  color: $corpRed;
 }
 $crimsom: #aa3125;
 .navbar-byc {

@@ -11,7 +11,7 @@
         {{ Auth::user()->name }}
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropDown">
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{ route("user.edit", auth()->user()->slug) }}">
             {{ __('Mi Perfil') }}
         </a>
         <div class="dropdown-divider"></div>
